@@ -1,5 +1,6 @@
 const admin = require('firebase-admin')
 const functions = require('firebase-functions')
+const { WebhookClient } = require('dialogflow-fulfillment')
 const firebase = require('firebase')
 const request = require('request-promise');
 const serviceAccount = require('./line-hack-760b1-firebase-adminsdk-nnkhp-84fccb4da8.json')
@@ -31,12 +32,14 @@ app.intent('Order the drink', orderTheDrink)
 app.intent('Choose size', chooseSize)
 app.intent('Order completed', finishORder)
 app.intent('Order completed', finishORder)
-app.intent('ask for orders', listCurrentOrder)
 
 // [Tee] Query ดู list order
 // [Tee] app.intent('List current Order', listCurrentOrder)
 
-function listCurrentOrder(conv, params) {
+function listCurrentOrder(conv) {
+    let agent = new WebhookClient(conv)
+    let agentConv = agent.conv()
+    agentConv.ask('Please choose an item:') // Use Actions on Google library to add responses
 
 }
 
@@ -147,4 +150,15 @@ function welcomeIntent (conv) {
     conv.ask(new Permission(options))
 }
 
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app)
+exports.dialogflowFirebaseFulfillmentAog = functions.https.onRequest(app)
+
+exports.dialogflowFirebaseFulfillmentLINE = functions.https.onRequest((request, response) => {
+    const agent = new WebhookClient({ request, response })
+    
+    function askForOrder(agent) {
+        agent.add(`Say some thing`)
+    }
+    let intentMap = new Map();
+    intentMap.set('Ask for orders', askForOrder)
+    agent.handleRequest(intentMap)
+})
