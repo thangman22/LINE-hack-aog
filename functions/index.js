@@ -31,6 +31,7 @@ app.intent('Order the drink', orderTheDrink)
 app.intent('Choose size', chooseSize)
 app.intent('Order completed', finishORder)
 app.intent('Order completed', finishORder)
+app.intent('ask for orders', listCurrentOrder)
 
 // [Tee] Query ดู list order
 // [Tee] app.intent('List current Order', listCurrentOrder)
