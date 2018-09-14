@@ -1,7 +1,14 @@
 const admin = require('firebase-admin')
 const functions = require('firebase-functions')
 const firebase = require('firebase')
+const request = require('request-promise');
 const serviceAccount = require('./line-hack-760b1-firebase-adminsdk-nnkhp-84fccb4da8.json')
+
+const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
+const LINE_HEADER = {
+	'Content-Type': 'application/json',
+	'Authorization': `Bearer yAL0CMkpiw81tJFYWiHvcUzGRNyvxNwnSBMXUsqlRrlazqj3FwYcHe66vNAXISmfBd3Xp1phbFBpxF+YseDQstgpfYUp7mjBBzCteSHbJc0RMy6FUCD4hNPY6vOao5foJ1Gg9SLkji4P/U4wnnU3CQdB04t89/1O/w1cDnyilFU=`
+};
 
 admin.initializeApp({
     apiKey: "AIzaSyCd5zLpFxRrTVGjrAK4Pt9WiuN-amBrePg",
@@ -39,12 +46,27 @@ function finishORder(conv,params) {
         text: `${params.size} ${conv.data.menu} will serve to you soon. Thank you`
     }))
 
+	 const orderDetail = `${conv.user.name.given} order ${params.size} ${conv.data.menu}`
+
     realtimeDatabase.ref('order').push().set({
-        text: `${conv.user.name.given} order ${params.size} ${conv.data.menu}`
+        text: orderDetail
     })
 
-    // [Tee] Push to LINE
-
+	 // [Tee] Push to LINE
+	 return request({
+		method: `POST`,
+		uri: `${LINE_MESSAGING_API}/push`,
+		headers: LINE_HEADER,
+		body: JSON.stringify({
+			to: `C462a399733a3c2530052cb22aea34086`,
+			messages: [
+				{
+					type: `text`,
+					text: orderDetail
+				}
+			]
+		})
+	});
 }
 
 function chooseSize(conv, _, option) {
