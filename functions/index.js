@@ -15,7 +15,7 @@ admin.initializeApp({
 
 const realtimeDatabase = admin.database()
 
-const { dialogflow, Permission, Image, SimpleResponse, Carousel, Suggestions, UpdatePermission } = require('actions-on-google')
+const { dialogflow, Permission, Image, SimpleResponse, Carousel, Suggestions } = require('actions-on-google')
 
 const app = dialogflow()
 
@@ -23,12 +23,24 @@ app.intent('Default Welcome Intent', welcomeIntent)
 app.intent('Order the drink', orderTheDrink)
 app.intent('Choose size', chooseSize)
 app.intent('Order completed', finishORder)
+app.intent('Order completed', finishORder)
+
+// [Tee] Query ดู list order
+// [Tee] app.intent('List current Order', listCurrentOrder)
+
+function listCurrentOrder(conv, params) {
+
+}
 
 function finishORder(conv,params) {
+
     conv.close(new SimpleResponse({
         speech: `<speak> ${params.size} ${conv.user.storage.menu} will serve to you soon. Thank you</speak>`,
         text: `${params.size} ${conv.user.storage.menu} will serve to you soon. Thank you`
     }))
+
+    // [Tee] Push to LINE
+
 }
 
 function chooseSize(conv, _, option) {
@@ -45,6 +57,9 @@ function chooseSize(conv, _, option) {
 
 function orderTheDrink(conv, _, confirmationGranted) {
     if (confirmationGranted) {
+
+        conv.user.storage = conv.user.name.given
+        
         conv.ask(new SimpleResponse({
             speech: `<speak>Hello ${conv.user.name.given}. <break time="1s" />What you want to order today?</speak>`,
             text: `Hello ${conv.user.name.given}. What you want to order today?`
