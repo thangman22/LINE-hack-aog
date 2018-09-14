@@ -35,9 +35,13 @@ function listCurrentOrder(conv, params) {
 function finishORder(conv,params) {
 
     conv.close(new SimpleResponse({
-        speech: `<speak> ${params.size} ${conv.user.storage.menu} will serve to you soon. Thank you</speak>`,
-        text: `${params.size} ${conv.user.storage.menu} will serve to you soon. Thank you`
+        speech: `<speak> ${params.size} ${conv.data.menu} will serve to you soon. Thank you</speak>`,
+        text: `${params.size} ${conv.data.menu} will serve to you soon. Thank you`
     }))
+
+    realtimeDatabase.ref('order').push().set({
+        text: `${conv.user.name.given} order ${params.size} ${conv.data.menu}`
+    })
 
     // [Tee] Push to LINE
 
@@ -45,6 +49,8 @@ function finishORder(conv,params) {
 
 function chooseSize(conv, _, option) {
     
+    conv.data.menu = option
+
     conv.ask(new SimpleResponse({
         speech: `<speak>What size do you want for your ${option}?</speak>`,
         text: `What size do you want for your ${option}?`
@@ -52,13 +58,13 @@ function chooseSize(conv, _, option) {
 
     conv.ask(new Suggestions(['Small', 'Medium', 'Large']))
 
-    conv.user.storage.menu = option
+    
 }
 
 function orderTheDrink(conv, _, confirmationGranted) {
     if (confirmationGranted) {
 
-        conv.user.storage = conv.user.name.given
+        conv.data.name = conv.user.name.given
         
         conv.ask(new SimpleResponse({
             speech: `<speak>Hello ${conv.user.name.given}. <break time="1s" />What you want to order today?</speak>`,
