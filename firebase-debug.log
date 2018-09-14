@@ -1,35 +1,35 @@
-[debug] [2018-09-14T18:29:32.307Z] ----------------------------------------------------------------------
-[debug] [2018-09-14T18:29:32.310Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only=functions
-[debug] [2018-09-14T18:29:32.311Z] CLI Version:   3.19.0
-[debug] [2018-09-14T18:29:32.311Z] Platform:      darwin
-[debug] [2018-09-14T18:29:32.311Z] Node Version:  v8.10.0
-[debug] [2018-09-14T18:29:32.311Z] Time:          Sat Sep 15 2018 01:29:32 GMT+0700 (+07)
-[debug] [2018-09-14T18:29:32.311Z] ----------------------------------------------------------------------
+[debug] [2018-09-14T19:01:19.268Z] ----------------------------------------------------------------------
+[debug] [2018-09-14T19:01:19.271Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only=functions
+[debug] [2018-09-14T19:01:19.271Z] CLI Version:   3.19.0
+[debug] [2018-09-14T19:01:19.271Z] Platform:      darwin
+[debug] [2018-09-14T19:01:19.271Z] Node Version:  v8.10.0
+[debug] [2018-09-14T19:01:19.271Z] Time:          Sat Sep 15 2018 02:01:19 GMT+0700 (+07)
+[debug] [2018-09-14T19:01:19.272Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-09-14T18:29:32.365Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-09-14T18:29:32.366Z] > authorizing via signed-in user
-[debug] [2018-09-14T18:29:32.369Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/line-hack-760b1  
+[debug] [2018-09-14T19:01:19.295Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-14T19:01:19.296Z] > authorizing via signed-in user
+[debug] [2018-09-14T19:01:19.298Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/line-hack-760b1  
   
- Sat Sep 15 2018 01:29:32 GMT+0700 (+07)
-[debug] [2018-09-14T18:29:35.877Z] <<< HTTP RESPONSE 200
-[debug] [2018-09-14T18:29:35.878Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/line-hack-760b1/tokens  
+ Sat Sep 15 2018 02:01:19 GMT+0700 (+07)
+[debug] [2018-09-14T19:01:22.466Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-14T19:01:22.467Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/line-hack-760b1/tokens  
   
- Sat Sep 15 2018 01:29:35 GMT+0700 (+07)
-[debug] [2018-09-14T18:29:36.789Z] <<< HTTP RESPONSE 200
-[debug] [2018-09-14T18:29:36.791Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/line-hack-760b1  
+ Sat Sep 15 2018 02:01:22 GMT+0700 (+07)
+[debug] [2018-09-14T19:01:23.462Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-14T19:01:23.464Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/line-hack-760b1  
   
- Sat Sep 15 2018 01:29:36 GMT+0700 (+07)
-[debug] [2018-09-14T18:29:38.224Z] <<< HTTP RESPONSE 200
+ Sat Sep 15 2018 02:01:23 GMT+0700 (+07)
+[debug] [2018-09-14T19:01:24.805Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/thangman22/Desktop/web/LINE-hack'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2018-09-14T18:29:39.885Z] Fetching environment
-[debug] [2018-09-14T18:29:39.889Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/888915503852:getServerAppConfig  
+[debug] [2018-09-14T19:01:26.602Z] Fetching environment
+[debug] [2018-09-14T19:01:26.605Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/888915503852:getServerAppConfig  
   
- Sat Sep 15 2018 01:29:39 GMT+0700 (+07)
-[debug] [2018-09-14T18:29:40.289Z] <<< HTTP RESPONSE 200
-[debug] [2018-09-14T18:29:40.290Z] Starting @google-cloud/functions-emulator
-[debug] [2018-09-14T18:29:43.402Z] Parsing function triggers
+ Sat Sep 15 2018 02:01:26 GMT+0700 (+07)
+[debug] [2018-09-14T19:01:27.092Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-14T19:01:27.093Z] Starting @google-cloud/functions-emulator
+[debug] [2018-09-14T19:01:30.198Z] Parsing function triggers
 [info] ✔  functions: dialogflowFirebaseFulfillmentAog: http://localhost:5000/line-hack-760b1/us-central1/dialogflowFirebaseFulfillmentAog
 [info] ✔  functions: dialogflowFirebaseFulfillmentLINE: http://localhost:5000/line-hack-760b1/us-central1/dialogflowFirebaseFulfillmentLINE
