@@ -158,7 +158,7 @@ exports.dialogflowFirebaseFulfillmentLINE = functions.https.onRequest((request, 
     function askForOrder(agent) {
 		return admin.database().ref('order').once('value').then(snapshot => {
 			snapshot.forEach((orderSnap) => {
-				agent.add(orderSnap)
+				agent.add(orderSnap.val().selection)
 			 })
       })
     }
