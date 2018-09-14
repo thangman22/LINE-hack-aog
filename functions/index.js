@@ -156,10 +156,12 @@ exports.dialogflowFirebaseFulfillmentLINE = functions.https.onRequest((request, 
     const agent = new WebhookClient({ request, response })
     
     function askForOrder(agent) {
+        let order = 1
 		return admin.database().ref('order').once('value').then(snapshot => {
-			snapshot.forEach((orderSnap) => {
-				agent.add(orderSnap)
-			 })
+            return snapshot.forEach((orderSnap) => {
+                agent.add(order + '. ' + orderSnap.val().text)
+                order++
+			})
       })
     }
     let intentMap = new Map();
