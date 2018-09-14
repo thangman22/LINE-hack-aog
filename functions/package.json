@@ -13,7 +13,8 @@
     "actions-on-google": "^2.3.0",
     "firebase": "^5.5.0",
     "firebase-admin": "~5.12.1",
-    "firebase-functions": "^1.0.3"
+    "firebase-functions": "^1.0.3",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "eslint": "^4.12.0",
