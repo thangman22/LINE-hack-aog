@@ -30,20 +30,9 @@ const app = dialogflow()
 app.intent('Default Welcome Intent', welcomeIntent)
 app.intent('Order the drink', orderTheDrink)
 app.intent('Choose size', chooseSize)
-app.intent('Order completed', finishORder)
-app.intent('Order completed', finishORder)
+app.intent('Order completed', finishOrder)
 
-// [Tee] Query ดู list order
-// [Tee] app.intent('List current Order', listCurrentOrder)
-
-function listCurrentOrder(conv) {
-    let agent = new WebhookClient(conv)
-    let agentConv = agent.conv()
-    agentConv.ask('Please choose an item:') // Use Actions on Google library to add responses
-
-}
-
-function finishORder(conv,params) {
+function finishOrder(conv,params) {
 
     conv.close(new SimpleResponse({
         speech: `<speak> ${params.size} ${conv.data.menu} will serve to you soon. Thank you</speak>`,
