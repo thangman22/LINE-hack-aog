@@ -73,7 +73,6 @@ function chooseSize(conv, _, option) {
 
     conv.ask(new Suggestions(['Small', 'Medium', 'Large']))
 
-    
 }
 
 function orderTheDrink(conv, _, confirmationGranted) {
@@ -134,9 +133,10 @@ function welcomeIntent (conv) {
     const options = {
         context: 'Hi I\'m line cafe. To send your drink',
         // Ask for more than one permission. User can authorize all or none.
-        permissions: ['NAME', 'DEVICE_PRECISE_LOCATION']
+        permissions: ['NAME']
     }
     conv.ask(new Permission(options))
+    
 }
 
 exports.dialogflowFirebaseFulfillmentAog = functions.https.onRequest(app)
@@ -149,10 +149,11 @@ exports.dialogflowFirebaseFulfillmentLINE = functions.https.onRequest((request, 
 		let result = ''
 		return admin.database().ref('order').once('value').then(snapshot => {
     	  	snapshot.forEach((orderSnap) => {
-         	result += order + '. ' + orderSnap.val().text + '\n\n'
-         	order++
+         	    result += order + '. ' + orderSnap.val().text + '\n\n'
+         	    order++
 			})
-			agent.add(result)
+            agent.add(result)
+            return true
       })
     }
     let intentMap = new Map();
